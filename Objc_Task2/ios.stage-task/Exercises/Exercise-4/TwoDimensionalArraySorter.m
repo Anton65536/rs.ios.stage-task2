@@ -3,48 +3,53 @@
 @implementation TwoDimensionalArraySorter
 
 - (NSArray *)twoDimensionalSort:(NSArray<NSArray *> *)array {
-    BOOL isAllStringClass = false ;
-    BOOL isAllNumberClass  = false;
+    
     NSSortDescriptor *descending = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
-    NSSortDescriptor *ascending = [NSSortDescriptor sortDescriptorWithKey:@"intVAlue" ascending:YES];
+    NSSortDescriptor *ascending = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
     NSMutableArray *resultArray = [NSMutableArray array];
+    NSMutableSet *flag = [NSMutableSet set];
     for (int i = 0; i < [array count]; i++) {
-        if (![[array[i] class] isKindOfClass:[NSArray class]]) {
+        if (![array[i] respondsToSelector:@selector(count)]) {
             return @[];
         }
         for (int j = 0; j < [array[i] count]; j++) {
-            if ([[array[i][j] class] isKindOfClass:[NSNumber class]] /*|| [array[i][j] count] == 0*/) {
-                isAllNumberClass = YES;
-            } else{
-                isAllNumberClass = NO;
+            NSArray* innerArray = array[i];
+            id el = innerArray[j];
+            if([el respondsToSelector:@selector(intValue)]){
+                [flag addObject:@"number"];
             }
-            if ([[array[i][j] class] isKindOfClass:[NSString class]]) {
-                isAllStringClass = YES;
-            } else {
-                isAllStringClass = NO;
+            if([el respondsToSelector:@selector(substringToIndex:)]){
+                [flag addObject:@"string"];
             }
+            
         }
         
     }
     for (int i = 0 ; i < [array count]; i++) {
-        for (int j = 0; j < [array[i] count]; j++) {
-            [resultArray arrayByAddingObjectsFromArray:array[i][j]];
-        }
+            NSArray* innerArray =  [NSArray arrayWithArray:array[i]] ;
+            [resultArray addObjectsFromArray: innerArray];
     }
     
-    if (isAllStringClass) {
+    
+    if ([flag containsObject:@"number"]) {
         
         [resultArray sortUsingDescriptors:@[ascending]];
-        return [resultArray copy];
-    } else if(isAllNumberClass){
+        
+    }
+        if ([flag containsObject:@"string"]){
         [resultArray sortUsingDescriptors:@[ascending]];
-        return [resultArray copy];
+        
+    }
+        if ([flag containsObject:@"number"] && [flag containsObject:@"string"]) {
+        [resultArray sortUsingDescriptors:@[ascending,descending]];
+            
     }
     
-    [resultArray sortUsingDescriptors:@[ascending,descending]];
     
     
+    
+    
+
     return [resultArray copy];
 }
-
 @end
