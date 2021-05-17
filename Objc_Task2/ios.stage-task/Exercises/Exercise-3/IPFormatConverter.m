@@ -14,8 +14,10 @@
     }
     for (int i = 0; i < [numbersArray count]; i++) {
 
+
         if ([numbersArray count] < 4) {
-            [mString appendString:[NSMutableString stringWithFormat:@"%@", numbersArray[i]]];
+            
+            mString = [numbersArray componentsJoinedByString:@"."];
             for (int j = 0 ; j < 4 - [numbersArray count]; j++) {
                 [mString appendFormat:@".%d", 0];
             }
