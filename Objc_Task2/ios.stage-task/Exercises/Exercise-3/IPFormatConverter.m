@@ -13,12 +13,7 @@
         }
     }
     for (int i = 0; i < [numbersArray count]; i++) {
-        if ([numbersArray[i] intValue]  > 255) {
-            return @"The numbers in the input array can be in the range from 0 to 255.";
-        }
-        if ([numbersArray[i] intValue] < 0 ) {
-            return @"Negative numbers are not valid for input.";
-        }
+
         if ([numbersArray count] < 4) {
             [mString appendString:[NSMutableString stringWithFormat:@"%@", numbersArray[i]]];
             for (int j = 0 ; j < 4 - [numbersArray count]; j++) {
