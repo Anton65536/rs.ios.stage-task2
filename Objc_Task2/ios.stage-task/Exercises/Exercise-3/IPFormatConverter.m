@@ -25,7 +25,6 @@
                 [mString appendFormat:@".%d", 0];
             }
             
-            //append .0 required times
             return  [mString copy];
         }
         if ([numbersArray count] > 4) {
