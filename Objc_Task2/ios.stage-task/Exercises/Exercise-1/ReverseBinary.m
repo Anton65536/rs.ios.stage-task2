@@ -32,6 +32,5 @@ UInt8 ReverseInteger(UInt8 n) {
     NSNumberFormatter* nf = [[NSNumberFormatter alloc] init];
     int dec = binaryTodecimal([[nf numberFromString:result] intValue]);
     
-    NSLog(@"%d",dec);
     return dec;
 }

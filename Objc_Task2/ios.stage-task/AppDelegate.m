@@ -1,6 +1,5 @@
 #import "AppDelegate.h"
-#import "ReverseBinary.h"
-#import "TwoDimensionalArraySorter.h"
+
 
 @interface AppDelegate ()
 
@@ -15,15 +14,6 @@
     self.window.rootViewController = [[UIViewController alloc] init];;
 
     [self.window makeKeyAndVisible];
-    
-//    TwoDimensionalArraySorter* tdas = [TwoDimensionalArraySorter new];
-//  
-//    
-//    NSArray *inputArray = @[@[@"Ivan",@"Ben",@"Dmitrii"], @[@"Billy",@"Cris"], @[@"Valentin",@"Van"], @[@"Alex",@"Kony"]];
-//    NSArray *restultArray = @[@"Alex",@"Ben",@"Billy",@"Cris",@"Dmitrii",@"Ivan",@"Kony",@"Valentin",@"Van"];
-//    NSArray* fook = [tdas twoDimensionalSort:inputArray];
-//    NSLog(@"%@",fook);
-//    NSLog(@"%@", restultArray);
     
     return YES;
 }
